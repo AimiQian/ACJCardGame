@@ -8,8 +8,8 @@ public enum Color {
     GREEN("Green", 3),
     BLUE("Blue", 3);
 
-    private String colorName;
-    private int index;
+    private final String colorName;
+    private final int index;
     private static HashMap<Integer , Color> lookupByIndex = null;
 
     public String getColorName(){
@@ -32,14 +32,14 @@ public enum Color {
     }
 
     private static void initIndexLookup(){
-        lookupByIndex = new HashMap<Integer, Color>();
+        lookupByIndex = new HashMap<>();
 
         for(Color c : Color.values()){
             lookupByIndex.put(c.getIndex(),c);
         }
     }
 
-    private Color(String colorName, int index){
+    Color(String colorName, int index){
         this.colorName = colorName;
         this.index = index;
     }

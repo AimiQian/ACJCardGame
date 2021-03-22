@@ -55,7 +55,7 @@ public class NormalCard extends UnoCard{
 
     @Override
     public String toString(){
-        return "Normal Card (Color:" + this.getColor().getColorName() + "/Num:" + this.getNum();
+        return "Normal Card (Color:" + this.getColor().getColorName() + "/Num:" + this.getNum() + ")";
     }
 
 }

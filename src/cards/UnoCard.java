@@ -4,6 +4,7 @@ import ca.sheridancollege.project.Card;
 
 /**
  * @author Aimi Qian
+ * This class extends Card class in starter code
  */
 public abstract class UnoCard extends Card {
     private Color color;
@@ -20,6 +21,8 @@ public abstract class UnoCard extends Card {
         this.color = color;
     }
 
+    //Abstract method, need to be implemented by subclasses
+    //all UnoCards need to have valid method to be used to check if the card can be played
     public abstract boolean isValid(UnoCard prevCard);
 
 }

@@ -1,5 +1,8 @@
 package cards;
 
+/**
+ * @author Aimi Qian
+ */
 public class PlusFourCard extends FuncCard{
     public PlusFourCard(){
         super(Color.RED);

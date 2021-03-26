@@ -1,5 +1,9 @@
 package cards;
 
+/**
+ * @author Aimi Qian
+ * This class extends UnoCard
+ */
 public class NormalCard extends UnoCard{
     private int num;
 

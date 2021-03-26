@@ -1,5 +1,8 @@
 package cards;
 
+/**
+ * @author Aimi Qian
+ */
 public class PlusTwoCard extends FuncCard{
     public PlusTwoCard (Color color){
         super(color);

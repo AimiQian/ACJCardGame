@@ -2,6 +2,10 @@ package cards;
 
 import java.util.HashMap;
 
+/**
+ * @author Aimi Qian
+ * This enum class specifies the color in uno games
+ */
 public enum Color {
     RED("Red", 1),
     YELLOW("Yellow", 2),

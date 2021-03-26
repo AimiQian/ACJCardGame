@@ -1,5 +1,8 @@
 package cards;
 
+/**
+ * @author Aimi Qian
+ */
 public class ChangeColorCard extends FuncCard{
     public ChangeColorCard(){
         super(Color.RED);

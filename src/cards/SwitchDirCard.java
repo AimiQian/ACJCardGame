@@ -1,5 +1,8 @@
 package cards;
 
+/**
+ * @author Aimi Qian
+ */
 public class SwitchDirCard extends FuncCard{
     public SwitchDirCard(Color color){
         super(color);

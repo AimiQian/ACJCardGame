@@ -8,6 +8,10 @@ import groupofcards.CardPile;
 
 import java.util.Scanner;
 
+/**
+ * @author Aimi Qian
+ * This class extends Game class in starter code
+ */
 public class UnoGame extends Game {
     private CardPile unPlayedCP = new CardPile(108);
     private CardPile playedCP = new CardPile(108);

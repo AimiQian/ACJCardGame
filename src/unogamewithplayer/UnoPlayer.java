@@ -8,10 +8,14 @@ import groupofcards.CardPile;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author Aimi Qian
+ * Extends the Player class in starter code
+ */
 public class UnoPlayer extends Player {
     private CardPile cp = new CardPile(7);
-    private Card lastPlayerCard;
-    private Card playedCard;
+    private Card lastPlayerCard; //the prior card that has been chosen to play
+    private Card playedCard;//the card the current user choose to play
 
     public UnoPlayer(String name){
         super(name);
@@ -73,6 +77,7 @@ public class UnoPlayer extends Player {
         }
     }
 
+    //This method will return an Arraylist of available cards to play
     public ArrayList<UnoCard> getValidCards(){
         ArrayList<UnoCard> vc = new ArrayList<>();
         for(Card c : this.cp.showCards()){
@@ -91,6 +96,7 @@ public class UnoPlayer extends Player {
         return vc;
     }
 
+    //Give the player the suggestion (which card to can choose to play)
     public void showSuggestion(ArrayList<UnoCard> vc){
         if(vc.size() == 0){
             System.out.println("\nThe previous player plays: " + this.getLastPlayerCard() + ". So you have nothing to play, get penalized for 1 card!");
@@ -120,11 +126,13 @@ public class UnoPlayer extends Player {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter which card do you want to play: (choose the index)");
 
+        //The player choose the card from the suggestion by choosing an index
         int choice  = in.nextInt();
 
 
         Card c = this.playCard(validUnoCards.get(choice));
 
+        //If they choose to play changecolor card and plusfour card, they should be asked to change a color
         if(c instanceof ChangeColorCard || c instanceof PlusFourCard){
             UnoCard un = (UnoCard)c;
             System.out.println("Which color Do you want to change to ?");

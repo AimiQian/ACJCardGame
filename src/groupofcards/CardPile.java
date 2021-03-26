@@ -2,9 +2,7 @@ package groupofcards;
 
 import ca.sheridancollege.project.Card;
 import ca.sheridancollege.project.GroupOfCards;
-
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author Aimi Qian

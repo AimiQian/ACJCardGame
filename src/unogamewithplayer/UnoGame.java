@@ -97,7 +97,7 @@ public class UnoGame extends Game {
         this.unPlayedCP.shuffle();
     }
 
-    //each player get 7 cards randamly
+    //each player get 7 cards randomly
     private void dealCards(){
         for(int i = 0; i < 7; i++){
             for(Player p : this.getPlayers()){

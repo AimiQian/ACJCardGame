@@ -11,11 +11,11 @@ package ca.sheridancollege.project;
  */
 public abstract class Player 
 {
-    private String playerID; //the unique ID for this player
+    private String playerID; //the unique ID for this unogamewithplayer
     
     /**
-     * A constructor that allows you to set the player's unique ID
-     * @param name the unique ID to assign to this player.
+     * A constructor that allows you to set the unogamewithplayer's unique ID
+     * @param name the unique ID to assign to this unogamewithplayer.
      */
     public Player(String name)
     {
@@ -41,7 +41,7 @@ public abstract class Player
     
     /**
      * The method to be instantiated when you subclass the Player class
-     * with your specific type of Player and filled in with logic to play your game.
+     * with your specific type of Player and filled in with logic to unogamewithplayer your game.
      */
     public abstract void play();
     

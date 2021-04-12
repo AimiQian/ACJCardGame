@@ -22,7 +22,6 @@ public class BanCard extends FuncCard{
     }
 
     /**
-     * 
      * The equals method returns true if two objects are the same or two ban cards are the same colour, which constitutes being the same.
      * 
      * @param o the given card object to be compared to the current object.
@@ -47,7 +46,6 @@ public class BanCard extends FuncCard{
     }
 
     /**
-     * 
      * isValid checks whether the card is valid to play in the current player's turn.
      * 
      * @param prevCard the card object played in the last player's turn.

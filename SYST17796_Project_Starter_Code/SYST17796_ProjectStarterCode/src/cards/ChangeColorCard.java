@@ -45,7 +45,6 @@ public class ChangeColorCard extends FuncCard{
 
     
     /**
-     * 
      * isValid checks whether the card is valid to play in the current player's turn.
      * 
      * @param prevCard the card object played in the last player's turn.

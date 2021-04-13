@@ -2,7 +2,11 @@ import unogamewithplayer.UnoGame;
 
 /**
  * @author Aimi Qian
- * Main entry to Uno Game
+ * 
+ * modified by: Christiana Kiervin & Joshua Miguel David
+ * 
+ * 
+ * Main entry point to Uno Game. Creates an instance of an UnoGame object and runs the object's play method to begin the game.
  *
  */
 public class UnoGameMain {
@@ -19,3 +23,4 @@ public class UnoGameMain {
         }
     }
 }
+

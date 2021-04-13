@@ -259,6 +259,7 @@ public class UnoGame extends Game {
                         break; // Exit current game and start a new one
                     } else {
                         keepPlaying = false;
+                        System.out.println("Thanks for playing!");
                         break;  //Exit game and do not play again
                     }
                                 

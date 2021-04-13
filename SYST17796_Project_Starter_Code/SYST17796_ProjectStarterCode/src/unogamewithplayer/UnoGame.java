@@ -48,11 +48,11 @@ public class UnoGame extends Game {
             System.out.println("Player " + i + " registered!");
             UnoPlayer player = new UnoPlayer(name);
             this.getPlayers().add(player);
-            System.out.print("More players? (Y/N) ");
+            System.out.print("More players? (Y/N)  ");
             String answer = in.nextLine();
             if(answer.equalsIgnoreCase("N")){
                 
-                System.out.println("Are you sure that's everyone? Y/N : ");
+                System.out.println("Are you sure that's everyone? Y/N :  ");
                 answer = in.nextLine();
 
                 if (answer.equalsIgnoreCase("Y")){

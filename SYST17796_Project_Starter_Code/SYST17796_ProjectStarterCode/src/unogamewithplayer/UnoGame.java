@@ -13,7 +13,8 @@ import java.util.Scanner;
  * 
  * modified by: Christiana Kiervin & Joshua Miguel David
  * 
- * This class extends Game class in starter code. It contains methods which allow for the main functionality of the Uno game-play from registering players to declaring a winner.
+ * This class extends Game class in starter code. 
+ * It contains methods which allow for the main functionality of the Uno game-play from registering players to declaring a winner.
  * 
  */
 public class UnoGame extends Game {
@@ -47,11 +48,16 @@ public class UnoGame extends Game {
             System.out.println("Player " + i + " registered!");
             UnoPlayer player = new UnoPlayer(name);
             this.getPlayers().add(player);
-            System.out.print("More player? (Y/N)");
+            System.out.print("More players? (Y/N) ");
             String answer = in.nextLine();
             if(answer.equalsIgnoreCase("N")){
+                
+                System.out.println("Are you sure that's everyone? Y/N : ");
+                answer = in.nextLine();
 
-                break;
+                if (answer.equalsIgnoreCase("Y")){
+                    break;
+                } 
             }
             i++;
         }
@@ -120,7 +126,8 @@ public class UnoGame extends Game {
 
    
     /**
-     * A method to deal 7 cards to each player. The methood will randomly draw cards from the unPlayed Card Pile and transfer them to the UnoPlayer's hand cardPile.
+     * A method to deal 7 cards to each player. 
+     * The methood will randomly draw cards from the unPlayed Card Pile and transfer them to the UnoPlayer's hand cardPile.
      * 
      */
     private void dealCards(){
@@ -151,14 +158,16 @@ public class UnoGame extends Game {
 
 
     /**
-     * A method to reverse the direction of current gameplay. It is called by special function ReverseDir cards to alter the UnoGame game-play.
+     * A method to reverse the direction of current gameplay. 
+     * It is called by special function ReverseDir cards to alter the UnoGame game-play.
      */
     private void reverse(){
         this.orderStep = this.orderStep * -1; // orderStep can only be 1 or -1
     }
 
     /**
-     * Given a minimum number of cards allowed in a cardPile, this method ensures the players do not run out of cards to draw from by combining the played cards with unplayed cards.
+     * Given a minimum number of cards allowed in a cardPile,
+     * this method ensures the players do not run out of cards to draw from by combining the played cards with unplayed cards.
      * 
      * @param minimum the minimum number of cards allowed in the unPlayed Card Pile before the decks will be combined and shuffled.
      */
@@ -200,63 +209,78 @@ public class UnoGame extends Game {
      */
     @Override
     public void play(){
-        System.out.println("Uno Game Start");
-        this.registerPlayer();
-        this.welcomePlayer();
-        this.iniCards();
-        this.dealCards();
+        
+        boolean keepPlaying = true;
+        Scanner in = new Scanner(System.in);
+        
+        do {
+            System.out.println("Uno Game Start");
+            this.registerPlayer();
+            this.welcomePlayer();
+            this.iniCards();
+            this.dealCards();
 
-        Card previousPlayedCard = null;
+            Card previousPlayedCard = null;
 
-        while(true){
+            while(true){
 
-            UnoPlayer player = this.nextPlayer();
-            System.out.println("\n\n" + player.getPlayerID() + ", its your turn!");
-            System.out.println("Last player played: " + previousPlayedCard + "\n");
-            player.setLastPlayerCard(previousPlayedCard);
+                UnoPlayer player = this.nextPlayer();
+                System.out.println("\n\n" + player.getPlayerID() + ", its your turn!");
+                System.out.println("Last player played: " + previousPlayedCard + "\n");
+                player.setLastPlayerCard(previousPlayedCard);
 
-            if(previousPlayedCard instanceof PlusTwoCard){
-                this.penalize(player, 2);
+                if(previousPlayedCard instanceof PlusTwoCard){
+                    this.penalize(player, 2);
+                }
+
+                if(previousPlayedCard instanceof PlusFourCard){
+                    this.penalize(player, 4);
+                }
+
+                player.play();
+
+                Card currentPlayerCard = player.getPlayedCard();
+                if(currentPlayerCard == null){
+                    //if current player has no card to play
+                    this.penalize(player, 1);// Add one card
+                    continue; // skip all the following steps
+                }
+                else {
+                    previousPlayedCard = currentPlayerCard;
+                    this.playedCP.addCard(previousPlayedCard);
+                }
+
+                //judge if wins
+                if(player.remain() == 0){
+                    this.declareWinner();
+                    
+                    System.out.println("Would you like to play again? Y/N");
+                    if (in.nextLine().equalsIgnoreCase("Y")) {
+                        break; // Exit current game and start a new one
+                    } else {
+                        keepPlaying = false;
+                        break;  //Exit game and do not play again
+                    }
+                                
+                                
+                }
+
+                if(previousPlayedCard instanceof SwitchDirCard){
+                    this.reverse();
+                    System.out.println("\nThe game order has been reversed!\n");
+                }
+
+                if(previousPlayedCard instanceof BanCard){
+                    UnoPlayer skippedPlayer = this.nextPlayer();
+                    System.out.println("\nOh no!" + skippedPlayer.getPlayerID() + " has been skipped!\n");
+                }
+
+                if(previousPlayedCard instanceof ChangeColorCard){
+                    System.out.println("\nCurrent Color has been changed to " + ((ChangeColorCard) previousPlayedCard).getColor() + "!\n");
+
+                }
             }
-
-            if(previousPlayedCard instanceof PlusFourCard){
-                this.penalize(player, 4);
-            }
-
-            player.play();
-
-            Card currentPlayerCard = player.getPlayedCard();
-            if(currentPlayerCard == null){
-                //if current player has no card to play
-                this.penalize(player, 1);// Add one card
-                continue; // skip all the following steps
-            }
-            else {
-                previousPlayedCard = currentPlayerCard;
-                this.playedCP.addCard(previousPlayedCard);
-            }
-
-            //judge if wins
-            if(player.remain() == 0){
-                this.declareWinner();
-                break; // Game over, no need to continue
-            }
-
-            if(previousPlayedCard instanceof SwitchDirCard){
-                this.reverse();
-                System.out.println("\nThe game order has been reversed!\n");
-            }
-
-            if(previousPlayedCard instanceof BanCard){
-                UnoPlayer skippedPlayer = this.nextPlayer();
-                System.out.println("\nOh no!" + skippedPlayer.getPlayerID() + " has been skipped!\n");
-            }
-
-            if(previousPlayedCard instanceof ChangeColorCard){
-                System.out.println("\nCurrent Color has been changed to " + ((ChangeColorCard) previousPlayedCard).getColor() + "!\n");
-
-            }
-        }
+        } while (keepPlaying);
 
     }
 

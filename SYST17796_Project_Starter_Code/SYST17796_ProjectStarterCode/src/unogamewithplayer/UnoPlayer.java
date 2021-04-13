@@ -196,13 +196,23 @@ public class UnoPlayer extends Player {
 
         //if the player has the cards to play
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter which card do you want to play: (choose the index)");
+        boolean invalid = true;
+        Card c = null;
 
-        //The player choose the card from the suggestion by choosing an index
-        int choice  = in.nextInt();
+        do {
+            System.out.println("Enter which card do you want to play: (choose the index)");
 
+            //The player choose the card from the suggestion by choosing an index
+            int choice  = in.nextInt();
 
-        Card c = this.playCard(validUnoCards.get(choice));
+            try {
+                c = this.playCard(validUnoCards.get(choice));
+                invalid = false;
+            } catch (IndexOutOfBoundsException ex) {
+                System.out.println("You've entered a non-existent index, please try again.");
+                invalid = true;
+            }
+        } while (invalid);
 
         //If they choose to play changecolor card and plusfour card, they should be asked to change a color
         if(c instanceof ChangeColorCard || c instanceof PlusFourCard){
